@@ -8,22 +8,22 @@ class App
 {
 private:
 	RenderWindow window;
+	RenderWindow windowMenu;
+	RenderWindow windowMap;
 	Texture textureStart;
 	Texture textureMap;
 	Texture textureMenu;
 	Sprite sprite;
+	Sprite spriteMenu;
 	Sprite spriteMap;
-	RectangleShape rectangleOption, rectangleCreate, rectangleDelete, rectangleExit;
-	Font font;
-	Text textOfOption, textOfCreate,textOfDelete,textOfExit;
 	Event event;
-	bool isMapLoad;
 public:
 	App();
-	bool clicks(Event& event);
+	bool isButtonPressed(Event& event, int x1, int x2, int y1, int y2);
 	void createMenu();
-	void loadMap(Event& event, Sprite& sprite);
-	void runApp();
 	void seeClicks(Event& event);
+	void loadWindows(Event& event);
+	void loadMap();
+	void runApp();
 };
 

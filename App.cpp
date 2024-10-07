@@ -2,7 +2,6 @@
 
 App::App()
 {
-	window.create(VideoMode(1280, 720), "Proyecto");
 	if (!textureMap.loadFromFile("images/map.png"))
 	{
 		printf("Error al cargar la imagen mapa\n");
@@ -15,22 +14,18 @@ App::App()
 	{
 		printf("Error al cargar la imagen menu\n");
 	}
-	if (!font.loadFromFile("Font/Adventure Subtitles.ttf"))
-	{
-		printf("Error al cargar fuente de texto Adventure Subtitles");
-	}
 	sprite.setTexture(textureStart);
 
-	spriteMap.setTexture(textureMap);
-	spriteMap.setScale(0.85f,1.00);
-	spriteMap.setPosition(0, 0);
-
 	event = {};
-	isMapLoad = false;
-	createMenu();
+
+	window.create(VideoMode(1280, 720), "Proyecto");
+	windowMenu.create(VideoMode(1280, 720), "Proyecto");
+	windowMenu.setVisible(false);
+	windowMap.create(VideoMode(1280, 720), "Proyecto - Mapa");
+	windowMap.setVisible(false);
 }
 
-bool App::clicks(Event& event)
+bool App::isButtonPressed(Event& event, int x1, int x2, int y1, int y2)
 {
 	if (event.type == Event::MouseButtonPressed)
 	{
@@ -38,103 +33,13 @@ bool App::clicks(Event& event)
 		{
 			int clickX = event.mouseButton.x;
 			int clickY = event.mouseButton.y;
-			if (clickX >= 67 && clickX <= 238 && clickY >= 505 && clickY <= 540)
+			if (clickX >= x1 && clickX <= x2 && clickY >= y1 && clickY <= y2)
 			{
 				return true;
 			}
-			if (clickX >= 1088 && clickX <= 1277 && clickY >= 345 && clickY <= 395)
-			{
-				window.close();
-			}
-			
 		}
 	}
 	return false;
-}
-
-void App::createMenu()
-{
-	rectangleOption.setSize(Vector2f(192, 50));
-	rectangleOption.setFillColor(Color::White);
-	rectangleOption.setPosition(1088, 30);
-	
-	rectangleCreate.setSize(Vector2f(192, 50));
-	rectangleCreate.setFillColor(Color::White);
-	rectangleCreate.setPosition(1088, 135);
-
-	rectangleDelete.setSize(Vector2f(192, 50));
-	rectangleDelete.setFillColor(Color::White);
-	rectangleDelete.setPosition(1088, 240);
-
-	rectangleExit.setSize(Vector2f(192, 50));
-	rectangleExit.setFillColor(Color::White);
-	rectangleExit.setPosition(1088, 345);
-
-	textOfOption.setFont(font);
-	textOfCreate.setFont(font);
-	textOfDelete.setFont(font);
-	textOfExit.setFont(font);
-
-	textOfOption.setString("Opciones");
-	textOfCreate.setString("Crear ruta");
-	textOfDelete.setString("Borrar ruta");
-	textOfExit.setString("Salir");
-
-	textOfOption.setFillColor(Color::Black);
-	textOfCreate.setFillColor(Color::Black);
-	textOfDelete.setFillColor(Color::Black);
-	textOfExit.setFillColor(Color::Black);
-
-	textOfOption.setPosition(1110, 30);
-	textOfCreate.setPosition(1110, 135);
-	textOfDelete.setPosition(1100, 240);
-	textOfExit.setPosition(1152, 345);
-}
-
-void App::loadMap(Event& event, Sprite& spriteMap)
-{
-	if (clicks(event))
-	{
-		isMapLoad = true;
-	}
-}
-
-void App::runApp()
-{
-	while (window.isOpen())
-	{
-		Event event{};
-		while (window.pollEvent(event))
-		{
-			if (event.type == Event::Closed)
-			{
-				window.close();
-			}
-			loadMap(event, spriteMap);
-		}
-		window.clear(Color::Black);
-		if (isMapLoad)
-		{
-			window.draw(spriteMap);
-
-			window.draw(rectangleOption);
-			window.draw(rectangleCreate);
-			window.draw(rectangleDelete);
-			window.draw(rectangleExit);
-
-			window.draw(textOfOption);
-			window.draw(textOfCreate);
-			window.draw(textOfDelete);
-			window.draw(textOfExit);
-			
-		}
-		else
-		{
-			window.draw(sprite);
-		}
-		seeClicks(event);
-		window.display();
-	}
 }
 
 void App::seeClicks(Event& event)
@@ -147,5 +52,105 @@ void App::seeClicks(Event& event)
 			int y = event.mouseButton.y;
 			cout << "X=" << x << ", Y=" << y << endl;
 		}
+	}
+}
+
+void App::loadWindows(Event& event)
+{
+	if (isButtonPressed(event, 67, 238, 505, 540))
+	{
+		createMenu();
+	}
+}
+
+void App::createMenu()
+{
+	windowMenu.setVisible(true);
+	window.setVisible(false);
+
+	spriteMenu.setTexture(textureMenu);
+	while (windowMenu.isOpen())
+	{
+		Event eventMenu;
+		while (windowMenu.pollEvent(eventMenu))
+		{
+			if (eventMenu.type == Event::Closed)
+			{
+				windowMenu.close();
+				return;
+			}
+			seeClicks(eventMenu);
+			if (isButtonPressed(eventMenu, 534, 736, 212, 247))
+			{
+				windowMenu.setVisible(false);
+				loadMap();
+			}
+			if (isButtonPressed(eventMenu, 532, 741, 457, 494))
+			{
+				windowMenu.setVisible(false);
+				window.setVisible(true);
+				runApp();
+
+			}
+		}
+
+		windowMenu.clear(Color::Black);
+		windowMenu.draw(spriteMenu);
+		windowMenu.display();
+	}
+}
+
+void App::loadMap()
+{
+	windowMap.setVisible(true); 
+	window.setVisible(false);
+
+	spriteMap.setTexture(textureMap);
+	while (windowMap.isOpen())
+	{
+		Event eventMap;
+		while (windowMap.pollEvent(eventMap))
+		{
+			if (eventMap.type == Event::Closed)
+			{
+				windowMap.close();
+				return;
+			}
+			seeClicks(eventMap);
+			if (isButtonPressed(eventMap, 0, 169, 629, 718))
+			{
+				windowMap.setVisible(false);
+				createMenu();
+			}
+		}
+
+		windowMap.clear(Color::Black);
+		windowMap.draw(spriteMap);
+		windowMap.display();
+	}
+}
+
+void App::runApp()
+{
+	while (window.isOpen())
+	{
+		Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == Event::Closed)
+			{
+				window.close();
+			}
+			seeClicks(event);
+			loadWindows(event);
+		}
+		if (isButtonPressed(event, 69, 234, 568, 603))
+		{
+			window.close();
+		}
+
+		window.clear(Color::Black);
+		window.draw(sprite);
+		window.display();
 	}
 }
