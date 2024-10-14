@@ -102,7 +102,7 @@ void App::createMenu()
 
 void App::loadMap()
 {
-	windowMap.setVisible(true); 
+	windowMap.setVisible(true);
 	window.setVisible(false);
 
 	spriteMap.setTexture(textureMap);
@@ -117,15 +117,26 @@ void App::loadMap()
 				return;
 			}
 			seeClicks(eventMap);
+
+			if (eventMap.type == Event::MouseButtonPressed && eventMap.mouseButton.button == Mouse::Left)
+			{
+				int clickX = eventMap.mouseButton.x;
+				int clickY = eventMap.mouseButton.y;
+				ubications.addNewUbication(clickX, clickY);
+				cout << "Nodo creado en (" << clickX << ", " << clickY << ")" << endl;
+			}
+
 			if (isButtonPressed(eventMap, 0, 169, 629, 718))
 			{
 				windowMap.setVisible(false);
 				createMenu();
 			}
+			
 		}
 
 		windowMap.clear(Color::Black);
 		windowMap.draw(spriteMap);
+		drawCircles();
 		windowMap.display();
 	}
 }
@@ -152,5 +163,18 @@ void App::runApp()
 		window.clear(Color::Black);
 		window.draw(sprite);
 		window.display();
+	}
+}
+
+void App::drawCircles()
+{
+	Nodo* current = ubications.getHead();
+	while (current != nullptr)
+	{
+		CircleShape circle(8);
+		circle.setFillColor(Color::Red);
+		circle.setPosition(current->getX() - circle.getRadius(), current->getY() - circle.getRadius());
+		windowMap.draw(circle);
+		current = current->getNext();
 	}
 }

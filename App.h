@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "List.h"
 using namespace std;
 using namespace sf;
 
@@ -17,6 +18,7 @@ private:
 	Sprite spriteMenu;
 	Sprite spriteMap;
 	Event event;
+	List ubications;
 public:
 	App();
 	bool isButtonPressed(Event& event, int x1, int x2, int y1, int y2);
@@ -25,5 +27,7 @@ public:
 	void loadWindows(Event& event);
 	void loadMap();
 	void runApp();
+
+	void drawCircles();
 };
 
