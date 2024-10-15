@@ -29,5 +29,6 @@ public:
 	void runApp();
 
 	void drawCircles();
+	string namePlace();
 };
 

@@ -1,2 +1,4 @@
 ﻿  App.cpp
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(195,58): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(195,36): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
   Proyecto2.vcxproj -> D:\Visual Studio 2024\Programacion 1\Proyecto2\x64\Debug\Proyecto2.exe

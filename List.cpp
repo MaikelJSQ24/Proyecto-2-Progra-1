@@ -14,12 +14,14 @@ Nodo* List::getHead()
 	return head;
 }
 
-void List::addNewUbication(int x, int y)
+void List::addNewUbication(int x, int y,string name)
 {
-	Nodo* newNodo = new Nodo(x, y);
+	Nodo* newNodo = new Nodo(x, y, name);
 	if (!head)
 	{
 		head = newNodo;
+		head->setNext(nullptr);
+		head->setPrev(nullptr);
 	}
 	else {
 		Nodo* current = head;
@@ -28,5 +30,6 @@ void List::addNewUbication(int x, int y)
 			current = current->getNext();
 		}
 		current->setNext(newNodo);
+		current->setPrev(current);
 	}
 }

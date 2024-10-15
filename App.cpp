@@ -122,8 +122,13 @@ void App::loadMap()
 			{
 				int clickX = eventMap.mouseButton.x;
 				int clickY = eventMap.mouseButton.y;
-				ubications.addNewUbication(clickX, clickY);
-				cout << "Nodo creado en (" << clickX << ", " << clickY << ")" << endl;
+				if (!isButtonPressed(eventMap, 0, 169, 629, 718))
+				{
+					string name = namePlace();
+
+					ubications.addNewUbication(clickX, clickY, name);
+					cout << "Nodo creado en (" << clickX << ", " << clickY << ")con nombre: " << name << endl;
+				}
 			}
 
 			if (isButtonPressed(eventMap, 0, 169, 629, 718))
@@ -131,7 +136,7 @@ void App::loadMap()
 				windowMap.setVisible(false);
 				createMenu();
 			}
-			
+
 		}
 
 		windowMap.clear(Color::Black);
@@ -168,6 +173,12 @@ void App::runApp()
 
 void App::drawCircles()
 {
+	Font font;
+	if (!font.loadFromFile("Font/Adventure Subtitles.ttf"))
+	{
+		printf("Error al cargar fuente.");
+	}
+
 	Nodo* current = ubications.getHead();
 	while (current != nullptr)
 	{
@@ -175,6 +186,72 @@ void App::drawCircles()
 		circle.setFillColor(Color::Red);
 		circle.setPosition(current->getX() - circle.getRadius(), current->getY() - circle.getRadius());
 		windowMap.draw(circle);
+
+		Text text;
+		text.setFont(font);
+		text.setString(current->getName());
+		text.setCharacterSize(20);
+		text.setFillColor(Color::White);
+		text.setPosition(current->getX() + 10, current->getY() - 5);
+		windowMap.draw(text);
+
 		current = current->getNext();
+
 	}
+}
+
+string App::namePlace()
+{
+	string name = " ";
+	Font font;
+
+	if (!font.loadFromFile("Font/Adventure Subtitles.ttf"))
+	{
+		printf("No se pudo cargar la fuente Adventure Subtitles");
+	}
+	
+	Text text("", font, 12);
+	text.setFillColor(Color::Red);
+	
+	RenderWindow writeName(VideoMode(200,50), "Nombre del lugar");
+	while (writeName.isOpen())
+	{
+		Event eventWrite;
+		while (writeName.pollEvent(eventWrite))
+		{
+			if (eventWrite.type == Event::Closed)
+			{
+				writeName.close();
+			}
+
+			if (eventWrite.type == Event::TextEntered)
+			{
+				if (eventWrite.text.unicode < 128)
+				{
+					if (eventWrite.text.unicode == '\b')
+					{
+						if (!name.empty())
+						{
+							name.pop_back();
+						}
+					}
+					else if (eventWrite.text.unicode == '\r')
+					{
+						writeName.close();
+					}
+					else
+					{
+						name += static_cast<char>(eventWrite.text.unicode);
+					}
+				}
+			}
+		}
+
+		text.setString(name);
+		writeName.clear(Color::Black);
+		writeName.draw(text);
+		writeName.display();
+	}
+	cout << "Nombre del lugar ingresado: " << name << endl;
+	return name;
 }

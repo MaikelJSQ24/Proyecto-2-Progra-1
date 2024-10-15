@@ -7,12 +7,11 @@ class List
 {
 private:
 	Nodo* head;
-
 public:
 	List();
 	~List();
 
 	Nodo* getHead();
-	void addNewUbication(int x, int y);
+	void addNewUbication(int x, int y, string name);
 };
 

@@ -5,12 +5,15 @@ Nodo::Nodo()
 	x = 0;
 	y = 0;
 	next = nullptr;
+	prev = nullptr;
+	nameOfPlace = " ";
 }
 
-Nodo::Nodo(int x, int y)
+Nodo::Nodo(int x, int y,string nameOfPlace)
 {
 	this->x = x;
 	this->y = y;
+	this->nameOfPlace = nameOfPlace;
 }
 
 Nodo::~Nodo()
@@ -27,6 +30,16 @@ Nodo* Nodo::getNext()
 	return next;
 }
 
+void Nodo::setPrev(Nodo* prev)
+{
+	this->prev = prev;
+}
+
+Nodo* Nodo::getPrev()
+{
+	return prev;
+}
+
 int Nodo::getX()
 {
 	return x;
@@ -35,4 +48,9 @@ int Nodo::getX()
 int Nodo::getY()
 {
 	return y;
+}
+
+string Nodo::getName()
+{
+	return nameOfPlace;
 }
