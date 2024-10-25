@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "List.h"
+#include "Route.h"
+#include "RouteList.h"
 using namespace std;
 using namespace sf;
 
@@ -11,6 +12,7 @@ private:
 	RenderWindow window;
 	RenderWindow windowMenu;
 	RenderWindow windowMap;
+	RenderWindow windowOfRoutes;
 	Texture textureStart;
 	Texture textureMap;
 	Texture textureMenu;
@@ -18,7 +20,8 @@ private:
 	Sprite spriteMenu;
 	Sprite spriteMap;
 	Event event;
-	List ubications;
+	Route ubications;
+	RouteList routesList;
 public:
 	App();
 	bool isButtonPressed(Event& event, int x1, int x2, int y1, int y2);
@@ -26,8 +29,10 @@ public:
 	void seeClicks(Event& event);
 	void loadWindows(Event& event);
 	void loadMap();
+	void seeAllRoutes();
 	void runApp();
 
+	Color randomColor();
 	void drawCircles();
 	string namePlace();
 };

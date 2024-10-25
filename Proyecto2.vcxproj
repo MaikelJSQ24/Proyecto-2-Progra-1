@@ -131,14 +131,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
-    <ClCompile Include="List.cpp" />
-    <ClCompile Include="Nodo.cpp" />
+    <ClCompile Include="Route.cpp" />
+    <ClCompile Include="Place.cpp" />
     <ClCompile Include="Proyecto2.cpp" />
+    <ClCompile Include="RouteList.cpp" />
+    <ClCompile Include="RouteNodo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
-    <ClInclude Include="List.h" />
-    <ClInclude Include="Nodo.h" />
+    <ClInclude Include="Route.h" />
+    <ClInclude Include="Place.h" />
+    <ClInclude Include="RouteList.h" />
+    <ClInclude Include="RouteNodo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

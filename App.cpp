@@ -23,6 +23,8 @@ App::App()
 	windowMenu.setVisible(false);
 	windowMap.create(VideoMode(1280, 720), "Proyecto - Mapa");
 	windowMap.setVisible(false);
+	windowOfRoutes.create(VideoMode(1280, 720), "Proyecto");
+	windowOfRoutes.setVisible(false);
 }
 
 bool App::isButtonPressed(Event& event, int x1, int x2, int y1, int y2)
@@ -85,12 +87,16 @@ void App::createMenu()
 				windowMenu.setVisible(false);
 				loadMap();
 			}
+			if (isButtonPressed(eventMenu, 539, 738, 294, 329))
+			{
+				windowMenu.setVisible(false);
+				seeAllRoutes();
+			}
 			if (isButtonPressed(eventMenu, 532, 741, 457, 494))
 			{
 				windowMenu.setVisible(false);
 				window.setVisible(true);
 				runApp();
-
 			}
 		}
 
@@ -113,6 +119,7 @@ void App::loadMap()
 		{
 			if (eventMap.type == Event::Closed)
 			{
+				routesList.addRoute(ubications);
 				windowMap.close();
 				return;
 			}
@@ -127,12 +134,16 @@ void App::loadMap()
 					string name = namePlace();
 
 					ubications.addNewUbication(clickX, clickY, name);
-					cout << "Nodo creado en (" << clickX << ", " << clickY << ")con nombre: " << name << endl;
+					cout << "Nodo creado en (" << clickX << ", " << clickY << ") con nombre: " << name << endl;
 				}
 			}
 
 			if (isButtonPressed(eventMap, 0, 169, 629, 718))
 			{
+				Route newRoute;
+				newRoute.addUbicationsFrom(ubications);
+				routesList.addRoute(newRoute);
+				ubications.clearUbications();
 				windowMap.setVisible(false);
 				createMenu();
 			}
@@ -143,6 +154,64 @@ void App::loadMap()
 		windowMap.draw(spriteMap);
 		drawCircles();
 		windowMap.display();
+	}
+}
+
+void App::seeAllRoutes()
+{
+	windowOfRoutes.setVisible(true);
+	window.setVisible(false);
+
+	spriteMap.setTexture(textureMap);
+
+	while (windowOfRoutes.isOpen())
+	{
+		Event eventRoutes;
+		while (windowOfRoutes.pollEvent(eventRoutes))
+		{
+			if (eventRoutes.type == Event::Closed)
+			{
+				windowOfRoutes.close();
+			}
+		}
+
+		windowOfRoutes.clear(Color::Black);
+		windowOfRoutes.draw(spriteMap);
+
+		RouteNodo* routeNodo = routesList.getHeadRoute();
+		while (routeNodo != nullptr)
+		{
+			Route route = routeNodo->getRoute();
+			Place* current = route.getHead();
+			while (current != nullptr)
+			{
+				CircleShape circle(8);
+				circle.setFillColor(Color::Green);
+				circle.setPosition(current->getX() - circle.getRadius(), current->getY() - circle.getRadius());
+				windowOfRoutes.draw(circle);
+
+				Text text;
+				Font font;
+				if (font.loadFromFile("Font/Adventure Subtitles.ttf"))
+				{
+					text.setFont(font);
+					text.setString(current->getName());
+					text.setCharacterSize(15);
+					text.setFillColor(Color::White);
+					text.setPosition(current->getX() + 10, current->getY() - 5);
+					windowOfRoutes.draw(text);
+				}
+				current=current->getNext();
+			}
+			routeNodo = routeNodo->getNext();
+		}
+
+		if (isButtonPressed(eventRoutes, 0, 169, 629, 718))
+		{
+			windowOfRoutes.setVisible(false);
+			createMenu();
+		}
+		windowOfRoutes.display();
 	}
 }
 
@@ -171,6 +240,11 @@ void App::runApp()
 	}
 }
 
+Color App::randomColor()
+{
+	return Color(rand() % 256, rand() % 256, rand() % 256);
+}
+
 void App::drawCircles()
 {
 	Font font;
@@ -179,7 +253,7 @@ void App::drawCircles()
 		printf("Error al cargar fuente.");
 	}
 
-	Nodo* current = ubications.getHead();
+	Place* current = ubications.getHead();
 	while (current != nullptr)
 	{
 		CircleShape circle(8);
@@ -190,13 +264,13 @@ void App::drawCircles()
 		Text text;
 		text.setFont(font);
 		text.setString(current->getName());
-		text.setCharacterSize(20);
+		text.setCharacterSize(15);
 		text.setFillColor(Color::White);
 		text.setPosition(current->getX() + 10, current->getY() - 5);
 		windowMap.draw(text);
 
 		current = current->getNext();
-
+		
 	}
 }
 
@@ -209,11 +283,11 @@ string App::namePlace()
 	{
 		printf("No se pudo cargar la fuente Adventure Subtitles");
 	}
-	
-	Text text("", font, 12);
-	text.setFillColor(Color::Red);
-	
-	RenderWindow writeName(VideoMode(200,50), "Nombre del lugar");
+
+	Text text("", font, 40);
+	text.setFillColor(Color::Black);
+
+	RenderWindow writeName(VideoMode(500, 45), "Nombre del lugar");
 	while (writeName.isOpen())
 	{
 		Event eventWrite;
@@ -248,7 +322,7 @@ string App::namePlace()
 		}
 
 		text.setString(name);
-		writeName.clear(Color::Black);
+		writeName.clear(Color::White);
 		writeName.draw(text);
 		writeName.display();
 	}

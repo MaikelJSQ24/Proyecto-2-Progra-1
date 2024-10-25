@@ -1,4 +1,13 @@
 ﻿  App.cpp
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(195,58): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(195,36): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(201,61): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(201,39): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(269,58): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(269,36): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  Route.cpp
+  Place.cpp
+  Proyecto2.cpp
+D:\Visual Studio 2024\Programacion 1\Proyecto2\Proyecto2.cpp(2,10): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+  RouteList.cpp
+  RouteNodo.cpp
+  Generando código...
   Proyecto2.vcxproj -> D:\Visual Studio 2024\Programacion 1\Proyecto2\x64\Debug\Proyecto2.exe
