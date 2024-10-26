@@ -3,24 +3,24 @@
 #include <SFML/Graphics.hpp>
 using namespace std;
 using namespace sf;
-class Place
+class PlaceNodo
 {
 private:
 	int x;
 	int y;
 	Color color;
-	Place* next;
-	Place* prev;
+	PlaceNodo* next;
+	PlaceNodo* prev;
 	string nameOfPlace;
 public:
-	Place();
-	Place(int x, int y, string nameOfPlace);
-	~Place();
+	PlaceNodo();
+	PlaceNodo(int x, int y, string nameOfPlace, Color color);
+	~PlaceNodo();
 
-	void setNext(Place* next);
-	Place* getNext();
-	void setPrev(Place* prev);
-	Place* getPrev();
+	void setNext(PlaceNodo* next);
+	PlaceNodo* getNext();
+	void setPrev(PlaceNodo* prev);
+	PlaceNodo* getPrev();
 	int getX();
 	int getY();
 	string getName();

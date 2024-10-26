@@ -1,6 +1,6 @@
 #include "Place.h"
 
-Place::Place()
+PlaceNodo::PlaceNodo()
 {
 	x = 0;
 	y = 0;
@@ -10,53 +10,54 @@ Place::Place()
 
 }
 
-Place::Place(int x, int y, string nameOfPlace)
+PlaceNodo::PlaceNodo(int x, int y, string nameOfPlace,Color color)
 {
 	this->x = x;
 	this->y = y;
 	this->nameOfPlace = nameOfPlace;
+	this->color = color;
 }
 
-Place::~Place()
+PlaceNodo::~PlaceNodo()
 {
 }
 
-void Place::setNext(Place* next)
+void PlaceNodo::setNext(PlaceNodo* next)
 {
 	this->next = next;
 }
 
-Place* Place::getNext()
+PlaceNodo* PlaceNodo::getNext()
 {
 	return next;
 }
 
-void Place::setPrev(Place* prev)
+void PlaceNodo::setPrev(PlaceNodo* prev)
 {
 	this->prev = prev;
 }
 
-Place* Place::getPrev()
+PlaceNodo* PlaceNodo::getPrev()
 {
 	return prev;
 }
 
-int Place::getX()
+int PlaceNodo::getX()
 {
 	return x;
 }
 
-int Place::getY()
+int PlaceNodo::getY()
 {
 	return y;
 }
 
-string Place::getName()
+string PlaceNodo::getName()
 {
 	return nameOfPlace;
 }
 
-Color Place::getColor()
+Color PlaceNodo::getColor()
 {
 	return color;
 }

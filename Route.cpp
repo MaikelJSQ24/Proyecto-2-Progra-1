@@ -9,15 +9,25 @@ Route::~Route()
 {
 }
 
-Place* Route::getHead()
+PlaceNodo* Route::getHead()
 {
 	return head;
 }
 
+void Route::setColor(Color color)
+{
+	this->color = color;
+}
+
+Color Route::getColor()
+{
+	return color;
+}
+
 void Route::addNewUbication(int x, int y, string name)
 {
-	
-	Place* newNodo = new Place(x, y, name);
+	Color color = Color(rand() % 256, rand() % 256, rand() % 256);
+	PlaceNodo* newNodo = new PlaceNodo(x, y, name, color);
 	if (!head)
 	{
 		head = newNodo;
@@ -25,7 +35,7 @@ void Route::addNewUbication(int x, int y, string name)
 		head->setPrev(nullptr);
 	}
 	else {
-		Place* current = head;
+		PlaceNodo* current = head;
 		while (current->getNext() != nullptr)
 		{
 			current = current->getNext();
@@ -37,7 +47,7 @@ void Route::addNewUbication(int x, int y, string name)
 
 void Route::addUbicationsFrom(Route& otherRoute)
 {
-	Place* current = otherRoute.getHead();
+	PlaceNodo* current = otherRoute.getHead();
 	while (current != nullptr)
 	{
 		addNewUbication(current->getX(), current->getY(), current->getName());
@@ -47,10 +57,10 @@ void Route::addUbicationsFrom(Route& otherRoute)
 
 void Route::clearUbications()
 {
-	Place* current = head;
+	PlaceNodo* current = head;
 	while (current != nullptr)
 	{
-		Place* temp = current;
+		PlaceNodo* temp = current;
 		current = current->getNext();
 		delete temp;
 	}

@@ -82,17 +82,17 @@ void App::createMenu()
 				return;
 			}
 			seeClicks(eventMenu);
-			if (isButtonPressed(eventMenu, 534, 736, 212, 247))
+			if (isButtonPressed(eventMenu, 524, 747, 214, 254))
 			{
 				windowMenu.setVisible(false);
 				loadMap();
 			}
-			if (isButtonPressed(eventMenu, 539, 738, 294, 329))
+			if (isButtonPressed(eventMenu, 524, 753, 306, 342))
 			{
 				windowMenu.setVisible(false);
 				seeAllRoutes();
 			}
-			if (isButtonPressed(eventMenu, 532, 741, 457, 494))
+			if (isButtonPressed(eventMenu, 523, 747, 394, 428))
 			{
 				windowMenu.setVisible(false);
 				window.setVisible(true);
@@ -132,7 +132,6 @@ void App::loadMap()
 				if (!isButtonPressed(eventMap, 0, 169, 629, 718))
 				{
 					string name = namePlace();
-
 					ubications.addNewUbication(clickX, clickY, name);
 					cout << "Nodo creado en (" << clickX << ", " << clickY << ") con nombre: " << name << endl;
 				}
@@ -142,6 +141,7 @@ void App::loadMap()
 			{
 				Route newRoute;
 				newRoute.addUbicationsFrom(ubications);
+				newRoute.setColor(randomColor());
 				routesList.addRoute(newRoute);
 				ubications.clearUbications();
 				windowMap.setVisible(false);
@@ -182,11 +182,12 @@ void App::seeAllRoutes()
 		while (routeNodo != nullptr)
 		{
 			Route route = routeNodo->getRoute();
-			Place* current = route.getHead();
+			PlaceNodo* current = route.getHead();
+			Color routeColor = route.getColor();
 			while (current != nullptr)
 			{
 				CircleShape circle(8);
-				circle.setFillColor(Color::Green);
+				circle.setFillColor(routeColor);
 				circle.setPosition(current->getX() - circle.getRadius(), current->getY() - circle.getRadius());
 				windowOfRoutes.draw(circle);
 
@@ -253,11 +254,11 @@ void App::drawCircles()
 		printf("Error al cargar fuente.");
 	}
 
-	Place* current = ubications.getHead();
+	PlaceNodo* current = ubications.getHead();
 	while (current != nullptr)
 	{
 		CircleShape circle(8);
-		circle.setFillColor(Color::Red);
+		circle.setFillColor(Color::Black);
 		circle.setPosition(current->getX() - circle.getRadius(), current->getY() - circle.getRadius());
 		windowMap.draw(circle);
 
