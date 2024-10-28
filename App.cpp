@@ -27,7 +27,7 @@ App::App()
 	windowOfRoutes.setVisible(false);
 }
 
-bool App::isButtonPressed(Event& event, int x1, int x2, int y1, int y2)
+bool App::isButtonPressed(Event& event, float x1, float x2, float y1, float y2)
 {
 	if (event.type == Event::MouseButtonPressed)
 	{
@@ -129,7 +129,7 @@ void App::loadMap()
 			{
 				int clickX = eventMap.mouseButton.x;
 				int clickY = eventMap.mouseButton.y;
-				if (!isButtonPressed(eventMap, 0, 169, 629, 718))
+				if (!isButtonPressed(eventMap, 0, 178, 629, 716) && !isButtonPressed(eventMap, 195, 374, 647, 714))
 				{
 					string name = namePlace();
 					ubications.addNewUbication(clickX, clickY, name);
@@ -137,13 +137,16 @@ void App::loadMap()
 				}
 			}
 
-			if (isButtonPressed(eventMap, 0, 169, 629, 718))
+			if (isButtonPressed(eventMap, 195, 374, 647, 714))
 			{
 				Route newRoute;
 				newRoute.addUbicationsFrom(ubications);
 				newRoute.setColor(randomColor());
 				routesList.addRoute(newRoute);
 				ubications.clearUbications();
+			}
+			if (isButtonPressed(eventMap, 0, 178, 629, 716))
+			{
 				windowMap.setVisible(false);
 				createMenu();
 			}
@@ -183,9 +186,11 @@ void App::seeAllRoutes()
 		{
 			Route route = routeNodo->getRoute();
 			PlaceNodo* current = route.getHead();
+			PlaceNodo* prev = nullptr;
 			Color routeColor = route.getColor();
 			while (current != nullptr)
 			{
+			
 				CircleShape circle(8);
 				circle.setFillColor(routeColor);
 				circle.setPosition(current->getX() - circle.getRadius(), current->getY() - circle.getRadius());
@@ -195,14 +200,15 @@ void App::seeAllRoutes()
 				Font font;
 				if (font.loadFromFile("Font/Adventure Subtitles.ttf"))
 				{
-					text.setFont(font);
-					text.setString(current->getName());
-					text.setCharacterSize(15);
-					text.setFillColor(Color::White);
-					text.setPosition(current->getX() + 10, current->getY() - 5);
-					windowOfRoutes.draw(text);
+					loadFontAndText(font, text, current);
 				}
-				current=current->getNext();
+
+				if (prev != nullptr)
+				{
+					drawLines(windowOfRoutes,prev->getX(), prev->getY(), current->getX(), current->getY(), routeColor);
+				}
+				prev = current;
+				current = current->getNext();
 			}
 			routeNodo = routeNodo->getNext();
 		}
@@ -255,6 +261,7 @@ void App::drawCircles()
 	}
 
 	PlaceNodo* current = ubications.getHead();
+	PlaceNodo* prev = nullptr;
 	while (current != nullptr)
 	{
 		CircleShape circle(8);
@@ -270,8 +277,13 @@ void App::drawCircles()
 		text.setPosition(current->getX() + 10, current->getY() - 5);
 		windowMap.draw(text);
 
+		prev = current->getPrev();
+		if (prev != nullptr)
+		{
+			drawLines(windowMap, prev->getX(), prev->getY(), current->getX(), current->getY(), Color::Black);
+		}
 		current = current->getNext();
-		
+
 	}
 }
 
@@ -329,4 +341,24 @@ string App::namePlace()
 	}
 	cout << "Nombre del lugar ingresado: " << name << endl;
 	return name;
+}
+
+void App::loadFontAndText(Font font, Text text, PlaceNodo* nodo)
+{
+	text.setFont(font);
+	text.setString(nodo->getName());
+	text.setCharacterSize(15);
+	text.setFillColor(Color::White);
+	text.setPosition(nodo->getX() + 10, nodo->getY() - 5);
+	windowOfRoutes.draw(text);
+}
+
+void App::drawLines(RenderWindow& window, int x1, int y1, int x2, int y2, Color color)
+{
+	Vertex line[] =
+	{
+		Vertex(Vector2f(x1, y1), color), Vertex(Vector2f(x2, y2), color)
+	};
+	window.draw(line, 2, PrimitiveType::Lines);
+	window.draw(line, 2, PrimitiveType::Lines);
 }

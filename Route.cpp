@@ -41,7 +41,7 @@ void Route::addNewUbication(int x, int y, string name)
 			current = current->getNext();
 		}
 		current->setNext(newNodo);
-		current->setPrev(current);
+		newNodo->setPrev(current);
 	}
 }
 
