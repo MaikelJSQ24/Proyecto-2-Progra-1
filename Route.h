@@ -14,11 +14,14 @@ public:
 	Route();
 	~Route();
 
+	void setHead(PlaceNodo* head);
 	PlaceNodo* getHead();
 	void setColor(Color color);
 	Color getColor();
 	void addNewUbication(int x, int y, string name);
 	void addUbicationsFrom(Route& otherRoute);
 	void clearUbications();
+	void removeUbication(string name);
+	void clearRoute();
 };
 

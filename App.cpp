@@ -6,6 +6,10 @@ App::App()
 	{
 		printf("Error al cargar la imagen mapa\n");
 	}
+	if (!textureMapOfRoutes.loadFromFile("images/mapOfRoutes.png"))
+	{
+		printf("Error al cargar la imagen mapa de rutas\n");
+	}
 	if (!textureStart.loadFromFile("images/start.png"))
 	{
 		printf("Error al cargar la imagen start\n");
@@ -13,6 +17,10 @@ App::App()
 	if (!textureMenu.loadFromFile("images/menu.png"))
 	{
 		printf("Error al cargar la imagen menu\n");
+	}
+	if (!textureEdit.loadFromFile("images/editMenu.png"))
+	{
+		printf("Error al cargar la imagen editMenu\n");
 	}
 	sprite.setTexture(textureStart);
 
@@ -25,6 +33,7 @@ App::App()
 	windowMap.setVisible(false);
 	windowOfRoutes.create(VideoMode(1280, 720), "Proyecto");
 	windowOfRoutes.setVisible(false);
+
 }
 
 bool App::isButtonPressed(Event& event, float x1, float x2, float y1, float y2)
@@ -165,7 +174,7 @@ void App::seeAllRoutes()
 	windowOfRoutes.setVisible(true);
 	window.setVisible(false);
 
-	spriteMap.setTexture(textureMap);
+	spriteMapOfRoutes.setTexture(textureMapOfRoutes);
 
 	while (windowOfRoutes.isOpen())
 	{
@@ -176,10 +185,12 @@ void App::seeAllRoutes()
 			{
 				windowOfRoutes.close();
 			}
+			changeColor(eventRoutes);
+
 		}
 
 		windowOfRoutes.clear(Color::Black);
-		windowOfRoutes.draw(spriteMap);
+		windowOfRoutes.draw(spriteMapOfRoutes);
 
 		RouteNodo* routeNodo = routesList.getHeadRoute();
 		while (routeNodo != nullptr)
@@ -190,7 +201,7 @@ void App::seeAllRoutes()
 			Color routeColor = route.getColor();
 			while (current != nullptr)
 			{
-			
+
 				CircleShape circle(8);
 				circle.setFillColor(routeColor);
 				circle.setPosition(current->getX() - circle.getRadius(), current->getY() - circle.getRadius());
@@ -205,7 +216,7 @@ void App::seeAllRoutes()
 
 				if (prev != nullptr)
 				{
-					drawLines(windowOfRoutes,prev->getX(), prev->getY(), current->getX(), current->getY(), routeColor);
+					drawLines(windowOfRoutes, prev->getX(), prev->getY(), current->getX(), current->getY(), routeColor);
 				}
 				prev = current;
 				current = current->getNext();
@@ -219,6 +230,67 @@ void App::seeAllRoutes()
 			createMenu();
 		}
 		windowOfRoutes.display();
+	}
+}
+
+void App::editMenu(Route& route, int clickX, int clickY)
+{
+	RenderWindow editWindow(VideoMode(400, 400), "Editar");
+	spriteEdit.setTexture(textureEdit);
+
+	while (editWindow.isOpen())
+	{
+		Event editEvent;
+		while (editWindow.pollEvent(editEvent))
+		{
+			if (editEvent.type == Event::Closed)
+			{
+				editWindow.close();
+			}
+			seeClicks(editEvent);
+
+			if (isButtonPressed(editEvent, 123, 273, 77, 104))
+			{
+				route.setColor(randomColor());
+				cout << "Color cambiado.\n";
+				editWindow.close();
+			}
+			if (isButtonPressed(editEvent, 122, 277, 138, 165))
+			{
+				
+				PlaceNodo* current = route.getHead();
+				while (current != nullptr)
+				{
+					int posX = current->getX();
+					int posY = current->getY();
+					int radius = 8;
+
+			
+					if (clickX >= posX - radius && clickX <= posX + radius &&
+						clickY >= posY - radius && clickY <= posY + radius)
+					{
+						route.removeUbication(current->getName());
+						cout << "Nodo en (" << posX << ", " << posY << ") eliminado.\n";
+						break;
+					}
+					current = current->getNext();
+				}
+				editWindow.close();
+			}
+			if (isButtonPressed(editEvent, 124, 277, 200, 226))
+			{
+				route.clearRoute();
+				cout << "Ruta eliminada\n";
+				editWindow.close();
+			}
+			if (isButtonPressed(editEvent, 124, 276, 261, 287))
+			{
+				editWindow.close();
+			}
+		}
+		editWindow.clear(Color::Black);
+		editWindow.draw(spriteEdit);
+		editWindow.display();
 	}
 }
 
@@ -361,4 +433,36 @@ void App::drawLines(RenderWindow& window, int x1, int y1, int x2, int y2, Color 
 	};
 	window.draw(line, 2, PrimitiveType::Lines);
 	window.draw(line, 2, PrimitiveType::Lines);
+}
+
+void App::changeColor(Event& event)
+{
+	if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Right)
+	{
+		int clickX = event.mouseButton.x;
+		int clickY = event.mouseButton.y;
+
+		RouteNodo* routeNodo = routesList.getHeadRoute();
+		while (routeNodo != nullptr)
+		{
+			Route& route = routeNodo->getRoute();
+			PlaceNodo* current = route.getHead();
+			while (current != nullptr)
+			{
+				int posX = current->getX();
+				int posY = current->getY();
+				int radius = 8;
+
+				if (clickX >= posX - radius && clickX <= posX + radius &&
+					clickY >= posY - radius && clickY <= posY + radius)
+				{
+					cout << "Clic detectado en la ubicacion: " << current->getName() << endl;
+					editMenu(route, clickX, clickY);
+					break;
+				}
+				current = current->getNext();
+			}
+			routeNodo = routeNodo->getNext();
+		}
+	}
 }

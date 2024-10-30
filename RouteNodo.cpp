@@ -31,7 +31,7 @@ RouteNodo* RouteNodo::getPrev()
 	return prev;
 }
 
-Route RouteNodo::getRoute()
+Route& RouteNodo::getRoute()
 {
 	return routes;
 }

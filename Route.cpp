@@ -9,6 +9,11 @@ Route::~Route()
 {
 }
 
+void Route::setHead(PlaceNodo* head)
+{
+	this->head = head;
+}
+
 PlaceNodo* Route::getHead()
 {
 	return head;
@@ -63,6 +68,42 @@ void Route::clearUbications()
 		PlaceNodo* temp = current;
 		current = current->getNext();
 		delete temp;
+	}
+	head = nullptr;
+}
+
+void Route::removeUbication(string name)
+{
+	PlaceNodo* current = head;
+	PlaceNodo* prev = nullptr;
+
+	while (current != nullptr) {
+		if (current->getName() == name) {
+			if (prev != nullptr) {
+				prev->setNext(current->getNext());
+			}
+			else {
+				head = current->getNext();
+			}
+			delete current;
+			cout << "Ubicacion " << name << " eliminada." << endl;
+			return;
+		}
+		prev = current;
+		current = current->getNext();
+	}
+
+
+}
+
+void Route::clearRoute()
+{
+	PlaceNodo* current = head;
+	while (current != nullptr)
+	{
+		PlaceNodo* nextNode = current->getNext();
+		delete current;
+		current = nextNode;
 	}
 	head = nullptr;
 }
