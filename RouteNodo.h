@@ -15,8 +15,6 @@ public:
 	RouteNodo* getNext();
 	void setPrev(RouteNodo* prev);
 	RouteNodo* getPrev();
-
-	/*Route getRoute();*/
 	Route& getRoute();
 
 };

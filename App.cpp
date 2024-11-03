@@ -33,7 +33,6 @@ App::App()
 	windowMap.setVisible(false);
 	windowOfRoutes.create(VideoMode(1280, 720), "Proyecto");
 	windowOfRoutes.setVisible(false);
-
 }
 
 bool App::isButtonPressed(Event& event, float x1, float x2, float y1, float y2)
@@ -152,6 +151,7 @@ void App::loadMap()
 				newRoute.addUbicationsFrom(ubications);
 				newRoute.setColor(randomColor());
 				routesList.addRoute(newRoute);
+				saveRoutesToFile();
 				ubications.clearUbications();
 			}
 			if (isButtonPressed(eventMap, 0, 178, 629, 716))
@@ -186,7 +186,6 @@ void App::seeAllRoutes()
 				windowOfRoutes.close();
 			}
 			changeColor(eventRoutes);
-
 		}
 
 		windowOfRoutes.clear(Color::Black);
@@ -199,9 +198,9 @@ void App::seeAllRoutes()
 			PlaceNodo* current = route.getHead();
 			PlaceNodo* prev = nullptr;
 			Color routeColor = route.getColor();
+
 			while (current != nullptr)
 			{
-
 				CircleShape circle(8);
 				circle.setFillColor(routeColor);
 				circle.setPosition(current->getX() - circle.getRadius(), current->getY() - circle.getRadius());
@@ -216,8 +215,15 @@ void App::seeAllRoutes()
 
 				if (prev != nullptr)
 				{
-					drawLines(windowOfRoutes, prev->getX(), prev->getY(), current->getX(), current->getY(), routeColor);
+
+					Vector2f p0(prev->getX(), prev->getY());
+					Vector2f p1(prev->getX() + 50, prev->getY() - 50);
+					Vector2f p2(current->getX() - 50, current->getY() + 50);
+					Vector2f p3(current->getX(), current->getY());
+
+					drawLineCurve(windowOfRoutes, p0, p1, p2, p3, routeColor);
 				}
+
 				prev = current;
 				current = current->getNext();
 			}
@@ -229,6 +235,7 @@ void App::seeAllRoutes()
 			windowOfRoutes.setVisible(false);
 			createMenu();
 		}
+
 		windowOfRoutes.display();
 	}
 }
@@ -257,7 +264,7 @@ void App::editMenu(Route& route, int clickX, int clickY)
 			}
 			if (isButtonPressed(editEvent, 122, 277, 138, 165))
 			{
-				
+
 				PlaceNodo* current = route.getHead();
 				while (current != nullptr)
 				{
@@ -265,7 +272,7 @@ void App::editMenu(Route& route, int clickX, int clickY)
 					int posY = current->getY();
 					int radius = 8;
 
-			
+
 					if (clickX >= posX - radius && clickX <= posX + radius &&
 						clickY >= posY - radius && clickY <= posY + radius)
 					{
@@ -334,6 +341,7 @@ void App::drawCircles()
 
 	PlaceNodo* current = ubications.getHead();
 	PlaceNodo* prev = nullptr;
+
 	while (current != nullptr)
 	{
 		CircleShape circle(8);
@@ -349,13 +357,18 @@ void App::drawCircles()
 		text.setPosition(current->getX() + 10, current->getY() - 5);
 		windowMap.draw(text);
 
-		prev = current->getPrev();
 		if (prev != nullptr)
 		{
-			drawLines(windowMap, prev->getX(), prev->getY(), current->getX(), current->getY(), Color::Black);
-		}
-		current = current->getNext();
+			Vector2f p0(prev->getX(), prev->getY());
+			Vector2f p1(prev->getX() + 50, prev->getY() - 50);
+			Vector2f p2(current->getX() - 50, current->getY() + 50);
+			Vector2f p3(current->getX(), current->getY());
 
+			drawLineCurve(windowMap, p0, p1, p2, p3, Color::Black);
+		}
+
+		prev = current;
+		current = current->getNext();
 	}
 }
 
@@ -432,7 +445,6 @@ void App::drawLines(RenderWindow& window, int x1, int y1, int x2, int y2, Color 
 		Vertex(Vector2f(x1, y1), color), Vertex(Vector2f(x2, y2), color)
 	};
 	window.draw(line, 2, PrimitiveType::Lines);
-	window.draw(line, 2, PrimitiveType::Lines);
 }
 
 void App::changeColor(Event& event)
@@ -465,4 +477,62 @@ void App::changeColor(Event& event)
 			routeNodo = routeNodo->getNext();
 		}
 	}
+}
+
+void App::drawLineCurve(RenderWindow& window, Vector2f p0, Vector2f p1, Vector2f p2, Vector2f p3, Color color)
+{
+	int prevX = 0, prevY = 0;
+	const int numPoints = 100;
+	for (int i = 0; i < numPoints; ++i)
+	{
+		float t = static_cast<float>(i) / static_cast<float>(numPoints - 1);
+		float x = (1 - t) * (1 - t) * (1 - t) * p0.x + 3 * (1 - t) * (1 - t) * t * p1.x + 3 * (1 - t) * t * t * p2.x + t * t * t * p3.x;
+		float y = (1 - t) * (1 - t) * (1 - t) * p0.y + 3 * (1 - t) * (1 - t) * t * p1.y + 3 * (1 - t) * t * t * p2.y + t * t * t * p3.y;
+
+		if (i > 0)
+		{
+			drawLines(window, prevX, prevY, x, y, color);
+		}
+
+		prevX = x;
+		prevY = y;
+	}
+}
+
+void App::saveRoutesToFile()
+{
+	ofstream fileOfRoutes;
+
+	fileOfRoutes.open("Rutas.txt");
+
+	if (!fileOfRoutes.is_open())
+	{
+		cerr << "Error, no se pudo abrir el archivo\n";
+		return;
+	}
+
+	RouteNodo* routeNodo = routesList.getHeadRoute();
+	int routeCount = 1;
+
+	while (routeNodo != nullptr)
+	{
+		Route& route = routeNodo->getRoute();
+		fileOfRoutes << "Ruta " << routeCount << ":\n";
+		PlaceNodo* current = route.getHead();
+
+		while (current != nullptr)
+		{
+			fileOfRoutes << "Ubicacion: " << current->getName() << ", X: " << current->getX() << ", Y:" << current->getY() << "\n";
+			current = current->getNext();
+		}
+
+		fileOfRoutes << "Color de la ruta: " << static_cast<int>(route.getColor().r) << ", " << static_cast<int>(route.getColor().g) << ", "
+			<< static_cast<int>(route.getColor().b) << "\n";
+		fileOfRoutes << "--------------------------\n";
+
+		routeNodo = routeNodo->getNext();
+		routeCount++;
+	}
+	fileOfRoutes.close();
+	cout << "Rutas guardadas en Rutas.txt\n";
 }

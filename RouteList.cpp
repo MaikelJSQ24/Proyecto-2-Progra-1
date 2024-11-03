@@ -14,10 +14,11 @@ RouteList::~RouteList()
 void RouteList::addRoute(Route routes)
 {
 	RouteNodo* newRouteNodo = new RouteNodo(routes);
-
 	if (!routeHead)
 	{
 		routeHead = newRouteNodo;
+		routeHead->setNext(nullptr);
+		routeHead->setPrev(nullptr);
 		return;
 	}
 	RouteNodo* current = routeHead;
@@ -26,7 +27,7 @@ void RouteList::addRoute(Route routes)
 		current = current->getNext();
 	}
 	current->setNext(newRouteNodo);
-	current->setPrev(current);
+	newRouteNodo->setPrev(current);
 }
 
 RouteNodo* RouteList::getHeadRoute()
