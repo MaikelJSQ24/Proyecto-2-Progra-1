@@ -1,13 +1,10 @@
 Ruta 1:
-Ubicacion:  guana, X: 378, Y:243
-Ubicacion:  alajuela, X: 601, Y:128
-Ubicacion:  heredia, X: 807, Y:232
-Ubicacion:  limon, X: 937, Y:289
-Color de la ruta: 210, 72, 166
+Ubicacion: San Jose, X: 770, Y: 435
+Ubicacion: Perez, X: 891, Y: 644
+Color de la ruta: 26, 178, 175
 --------------------------
 Ruta 2:
-Ubicacion:  San Jose, X: 758, Y:437
-Ubicacion:  Cartago, X: 909, Y:487
-Ubicacion:  Perez, X: 896, Y:640
-Color de la ruta: 142, 217, 139
+Ubicacion: Liberia, X: 324, Y: 160
+Ubicacion: Puntarenas, X: 433, Y: 470
+Color de la ruta: 233, 104, 185
 --------------------------

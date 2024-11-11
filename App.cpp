@@ -33,6 +33,7 @@ App::App()
 	windowMap.setVisible(false);
 	windowOfRoutes.create(VideoMode(1280, 720), "Proyecto");
 	windowOfRoutes.setVisible(false);
+	loadFromFile();
 }
 
 bool App::isButtonPressed(Event& event, float x1, float x2, float y1, float y2)
@@ -238,6 +239,7 @@ void App::seeAllRoutes()
 
 		windowOfRoutes.display();
 	}
+
 }
 
 void App::editMenu(Route& route, int clickX, int clickY)
@@ -260,6 +262,7 @@ void App::editMenu(Route& route, int clickX, int clickY)
 			{
 				route.setColor(randomColor());
 				cout << "Color cambiado.\n";
+				saveRoutesToFile();
 				editWindow.close();
 			}
 			if (isButtonPressed(editEvent, 122, 277, 138, 165))
@@ -282,12 +285,14 @@ void App::editMenu(Route& route, int clickX, int clickY)
 					}
 					current = current->getNext();
 				}
+				saveRoutesToFile();
 				editWindow.close();
 			}
 			if (isButtonPressed(editEvent, 124, 277, 200, 226))
 			{
 				route.clearRoute();
 				cout << "Ruta eliminada\n";
+				saveRoutesToFile();
 				editWindow.close();
 			}
 			if (isButtonPressed(editEvent, 124, 276, 261, 287))
@@ -522,7 +527,7 @@ void App::saveRoutesToFile()
 
 		while (current != nullptr)
 		{
-			fileOfRoutes << "Ubicacion: " << current->getName() << ", X: " << current->getX() << ", Y:" << current->getY() << "\n";
+			fileOfRoutes << "Ubicacion:" << current->getName() << ", X: " << current->getX() << ", Y: " << current->getY() << "\n";
 			current = current->getNext();
 		}
 
@@ -535,4 +540,65 @@ void App::saveRoutesToFile()
 	}
 	fileOfRoutes.close();
 	cout << "Rutas guardadas en Rutas.txt\n";
+}
+
+void App::loadFromFile()
+{
+	ifstream fileOfRoutes("Rutas.txt");
+
+	if (!fileOfRoutes.is_open()) {
+		cerr << "Error, no se pudo abrir el archivo Rutas.txt\n";
+		return;
+	}
+
+	string line;
+	Route* currentRoute = nullptr;
+	Color colorRoute;
+	while (getline(fileOfRoutes, line))
+	{
+		if (line.find("Ruta") != string::npos)
+		{
+			if (currentRoute != nullptr)
+			{
+				routesList.addRoute(*currentRoute);
+			}
+			currentRoute = new Route();
+		}
+		else if (line.find("Ubicacion:") != string::npos)
+		{
+			size_t posName = line.find("Ubicacion:") + 11;
+			string name = line.substr(posName, line.find(" X:") - posName);
+			size_t posX = line.find("X:") + 2;
+			size_t posY = line.find("Y:") + 2;
+			int x = stoi(line.substr(posX, line.find(",", posX) - posX));
+			int y = stoi(line.substr(posY));
+
+			if (currentRoute != nullptr)
+			{
+				currentRoute->addNewUbication(x, y, name);
+			}
+		}
+		else if (line.find("Color de la ruta:") != string::npos)
+		{
+			size_t posColor = line.find("Color de la ruta:") + 17;
+			int r = stoi(line.substr(posColor, line.find(",")));
+			size_t posFirstComma = line.find(",", posColor);
+			size_t posSecondComma = line.find(",", posFirstComma + 1);
+			int g = std::stoi(line.substr(posFirstComma + 1, posSecondComma - posFirstComma - 1));
+			int b = std::stoi(line.substr(posSecondComma + 1));
+
+			if (currentRoute != nullptr)
+			{
+				currentRoute->setColor(Color(r, g, b));
+			}
+		}
+	}
+
+	if (currentRoute != nullptr)
+	{
+		routesList.addRoute(*currentRoute);
+	}
+
+	fileOfRoutes.close();
+	cout << "Rutas cargadas desde Rutas.txt\n";
 }

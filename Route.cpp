@@ -9,6 +9,11 @@ Route::~Route()
 {
 }
 
+void Route::setName(string name)
+{
+	this->name = name;
+}
+
 void Route::setHead(PlaceNodo* head)
 {
 	this->head = head;

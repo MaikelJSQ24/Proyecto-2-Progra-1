@@ -10,10 +10,12 @@ class Route
 private:
 	PlaceNodo* head;
 	Color color;
+	string name;
 public:
 	Route();
 	~Route();
 
+	void setName(string name);
 	void setHead(PlaceNodo* head);
 	PlaceNodo* getHead();
 	void setColor(Color color);

@@ -4,7 +4,7 @@
 #include "Route.h"
 #include "RouteList.h"
 #include <fstream>
-#include <sstream>
+#include <string>
 using namespace std;
 using namespace sf;
 
@@ -49,6 +49,6 @@ public:
 	void drawLineCurve(RenderWindow& window, Vector2f p0, Vector2f p1, Vector2f p2, Vector2f p3, Color color);
 
 	void saveRoutesToFile();
-
+	void loadFromFile();
 };
 
