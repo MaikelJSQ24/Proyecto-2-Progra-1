@@ -1,110 +1,109 @@
 ﻿  App.cpp
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(220,42): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(220,42): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(220,42): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(220,42): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(220,42): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(220,28): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(220,28): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(220,28): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(220,28): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(220,28): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(221,50): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(221,50): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(221,50): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(221,50): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(221,50): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(221,31): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(221,31): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(221,31): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(221,31): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(221,31): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(222,56): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(222,56): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(222,56): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(222,56): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(222,56): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(222,34): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(222,34): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(222,34): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(222,34): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(222,34): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(223,48): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(223,48): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(223,48): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(223,48): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(223,48): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(223,31): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(223,31): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(223,31): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(223,31): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(223,31): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(362,58): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(362,36): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(367,40): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(367,40): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(367,40): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(367,40): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(367,40): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(367,26): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(367,26): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(367,26): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(367,26): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(367,26): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(368,48): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(368,48): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(368,48): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(368,48): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(368,48): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(368,29): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(368,29): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(368,29): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(368,29): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(368,29): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(369,54): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(369,54): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(369,54): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(369,54): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(369,54): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(369,32): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(369,32): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(369,32): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(369,32): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(369,32): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(370,46): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(370,46): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(370,46): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(370,46): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(370,46): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(370,29): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(370,29): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(370,29): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(370,29): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(370,29): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(442,51): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(442,32): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,23): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,23): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,23): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,23): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,23): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,19): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,19): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,19): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,19): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,19): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,56): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,56): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,56): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,56): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,56): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,52): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,52): warning C4244:         with
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,52): warning C4244:         [
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,52): warning C4244:             T=float
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(450,52): warning C4244:         ]
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(499,39): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(499,36): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(502,11): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(503,11): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(231,42): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(231,42): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(231,42): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(231,42): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(231,42): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(231,28): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(231,28): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(231,28): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(231,28): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(231,28): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(232,50): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(232,50): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(232,50): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(232,50): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(232,50): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(232,31): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(232,31): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(232,31): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(232,31): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(232,31): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(233,56): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(233,56): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(233,56): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(233,56): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(233,56): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(233,34): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(233,34): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(233,34): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(233,34): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(233,34): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(234,48): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(234,48): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(234,48): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(234,48): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(234,48): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(234,31): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(234,31): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(234,31): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(234,31): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(234,31): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(251,35): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(392,40): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(392,40): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(392,40): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(392,40): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(392,40): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(392,26): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(392,26): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(392,26): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(392,26): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(392,26): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(393,48): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(393,48): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(393,48): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(393,48): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(393,48): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(393,29): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(393,29): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(393,29): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(393,29): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(393,29): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(394,54): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(394,54): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(394,54): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(394,54): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(394,54): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(394,32): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(394,32): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(394,32): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(394,32): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(394,32): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(395,46): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(395,46): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(395,46): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(395,46): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(395,46): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(395,29): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(395,29): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(395,29): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(395,29): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(395,29): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(477,51): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(477,32): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,23): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,23): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,23): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,23): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,23): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,19): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,19): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,19): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,19): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,19): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,56): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,56): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,56): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,56): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,56): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,52): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,52): warning C4244:         with
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,52): warning C4244:         [
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,52): warning C4244:             T=float
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(485,52): warning C4244:         ]
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(534,39): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(534,36): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(537,11): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+D:\Visual Studio 2024\Programacion 1\Proyecto2\App.cpp(538,11): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
   Proyecto2.vcxproj -> D:\Visual Studio 2024\Programacion 1\Proyecto2\x64\Debug\Proyecto2.exe

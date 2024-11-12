@@ -16,6 +16,7 @@ public:
 	~Route();
 
 	void setName(string name);
+	string getName();
 	void setHead(PlaceNodo* head);
 	PlaceNodo* getHead();
 	void setColor(Color color);

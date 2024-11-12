@@ -14,6 +14,11 @@ void Route::setName(string name)
 	this->name = name;
 }
 
+string Route::getName()
+{
+	return name;
+}
+
 void Route::setHead(PlaceNodo* head)
 {
 	this->head = head;

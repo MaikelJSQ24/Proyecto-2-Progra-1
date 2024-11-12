@@ -2,41 +2,60 @@
 
 App::App()
 {
-	if (!textureMap.loadFromFile("images/map.png"))
-	{
-		printf("Error al cargar la imagen mapa\n");
-	}
-	if (!textureMapOfRoutes.loadFromFile("images/mapOfRoutes.png"))
-	{
-		printf("Error al cargar la imagen mapa de rutas\n");
-	}
-	if (!textureStart.loadFromFile("images/start.png"))
-	{
-		printf("Error al cargar la imagen start\n");
-	}
-	if (!textureMenu.loadFromFile("images/menu.png"))
-	{
-		printf("Error al cargar la imagen menu\n");
-	}
-	if (!textureEdit.loadFromFile("images/editMenu.png"))
-	{
-		printf("Error al cargar la imagen editMenu\n");
-	}
+	loadTextures(textureMap, "images/map.png");
+	loadTextures(textureMapOfRoutes, "images/mapOfRoutes.png");
+	loadTextures(textureStart, "images/start.png");
+	loadTextures(textureMenu, "images/menu.png");
+	loadTextures(textureEdit, "images/editMenu.png");
 	sprite.setTexture(textureStart);
+
+	loadMusic(musicStart, "Musica/start.ogg");
+	loadMusic(musicMenu, "Musica/menu.ogg");
+	loadMusic(musicMap, "Musica/map.ogg");
+
+	musicStart.setLoop(true);
+	musicStart.setVolume(10);
+	musicStart.play();
+
+	musicMenu.setLoop(true);
+	musicMenu.setVolume(10);
+
+	musicMap.setLoop(true);
+	musicMap.setVolume(10);
 
 	event = {};
 
 	window.create(VideoMode(1280, 720), "Proyecto");
 	windowMenu.create(VideoMode(1280, 720), "Proyecto");
 	windowMenu.setVisible(false);
-	windowMap.create(VideoMode(1280, 720), "Proyecto - Mapa");
+	windowMap.create(VideoMode(1280, 720), "Proyecto");
 	windowMap.setVisible(false);
 	windowOfRoutes.create(VideoMode(1280, 720), "Proyecto");
 	windowOfRoutes.setVisible(false);
 	loadFromFile();
 }
 
-bool App::isButtonPressed(Event& event, float x1, float x2, float y1, float y2)
+bool App::loadTextures(Texture& texture, string systemPath)
+{
+	if (!texture.loadFromFile(systemPath))
+	{
+		cerr << "Error, no se pudo cargar el archivo: " << systemPath << endl;
+		return false;
+	}
+	return true;
+}
+
+bool App::loadMusic(Music& music, string systemPath)
+{
+	if (!music.openFromFile(systemPath))
+	{
+		cerr << "Error, no se pudo cargar el archivo: " << systemPath << endl;
+		return false;
+	}
+	return true;
+}
+
+bool App::isButtonPressed(Event& event, int x1, int x2, int y1, int y2)
 {
 	if (event.type == Event::MouseButtonPressed)
 	{
@@ -53,29 +72,10 @@ bool App::isButtonPressed(Event& event, float x1, float x2, float y1, float y2)
 	return false;
 }
 
-void App::seeClicks(Event& event)
-{
-	if (event.type == Event::MouseButtonPressed)
-	{
-		if (event.mouseButton.button == Mouse::Left)
-		{
-			int x = event.mouseButton.x;
-			int y = event.mouseButton.y;
-			cout << "X=" << x << ", Y=" << y << endl;
-		}
-	}
-}
-
-void App::loadWindows(Event& event)
-{
-	if (isButtonPressed(event, 67, 238, 505, 540))
-	{
-		createMenu();
-	}
-}
-
 void App::createMenu()
 {
+	musicStart.pause();
+	musicMenu.play();
 	windowMenu.setVisible(true);
 	window.setVisible(false);
 
@@ -90,22 +90,26 @@ void App::createMenu()
 				windowMenu.close();
 				return;
 			}
-			seeClicks(eventMenu);
 			if (isButtonPressed(eventMenu, 524, 747, 214, 254))
 			{
 				windowMenu.setVisible(false);
+				musicMenu.pause();
 				loadMap();
 			}
 			if (isButtonPressed(eventMenu, 524, 753, 306, 342))
 			{
 				windowMenu.setVisible(false);
+				musicMenu.pause();
 				seeAllRoutes();
 			}
 			if (isButtonPressed(eventMenu, 523, 747, 394, 428))
 			{
 				windowMenu.setVisible(false);
 				window.setVisible(true);
+				musicMenu.pause();
+				musicStart.play();
 				runApp();
+
 			}
 		}
 
@@ -117,6 +121,7 @@ void App::createMenu()
 
 void App::loadMap()
 {
+	musicMap.play();
 	windowMap.setVisible(true);
 	window.setVisible(false);
 
@@ -132,7 +137,6 @@ void App::loadMap()
 				windowMap.close();
 				return;
 			}
-			seeClicks(eventMap);
 
 			if (eventMap.type == Event::MouseButtonPressed && eventMap.mouseButton.button == Mouse::Left)
 			{
@@ -140,7 +144,7 @@ void App::loadMap()
 				int clickY = eventMap.mouseButton.y;
 				if (!isButtonPressed(eventMap, 0, 178, 629, 716) && !isButtonPressed(eventMap, 195, 374, 647, 714))
 				{
-					string name = namePlace();
+					string name = nameOfPlace();
 					ubications.addNewUbication(clickX, clickY, name);
 					cout << "Nodo creado en (" << clickX << ", " << clickY << ") con nombre: " << name << endl;
 				}
@@ -151,6 +155,7 @@ void App::loadMap()
 				Route newRoute;
 				newRoute.addUbicationsFrom(ubications);
 				newRoute.setColor(randomColor());
+				newRoute.setName(nameOfRoute());
 				routesList.addRoute(newRoute);
 				saveRoutesToFile();
 				ubications.clearUbications();
@@ -158,6 +163,7 @@ void App::loadMap()
 			if (isButtonPressed(eventMap, 0, 178, 629, 716))
 			{
 				windowMap.setVisible(false);
+				musicMap.pause();
 				createMenu();
 			}
 
@@ -168,14 +174,18 @@ void App::loadMap()
 		drawCircles();
 		windowMap.display();
 	}
+
 }
 
 void App::seeAllRoutes()
 {
+	musicMap.play();
 	windowOfRoutes.setVisible(true);
 	window.setVisible(false);
 
 	spriteMapOfRoutes.setTexture(textureMapOfRoutes);
+
+	Font font;
 
 	while (windowOfRoutes.isOpen())
 	{
@@ -193,6 +203,7 @@ void App::seeAllRoutes()
 		windowOfRoutes.draw(spriteMapOfRoutes);
 
 		RouteNodo* routeNodo = routesList.getHeadRoute();
+		int spaceOfText = 0;
 		while (routeNodo != nullptr)
 		{
 			Route route = routeNodo->getRoute();
@@ -208,10 +219,10 @@ void App::seeAllRoutes()
 				windowOfRoutes.draw(circle);
 
 				Text text;
-				Font font;
+
 				if (font.loadFromFile("Font/Adventure Subtitles.ttf"))
 				{
-					loadFontAndText(font, text, current);
+					loadFontAndText(windowOfRoutes, font, text, current);
 				}
 
 				if (prev != nullptr)
@@ -228,12 +239,28 @@ void App::seeAllRoutes()
 				prev = current;
 				current = current->getNext();
 			}
+
+			Text routeNameText;
+			routeNameText.setFont(font);
+			routeNameText.setString(route.getName());
+			routeNameText.setCharacterSize(20);
+			routeNameText.setFillColor(route.getColor());
+
+			if (route.getHead() != nullptr)
+			{
+				routeNameText.setPosition(10, spaceOfText);
+				windowOfRoutes.draw(routeNameText);
+			}
+			spaceOfText += 30;
+
+
 			routeNodo = routeNodo->getNext();
 		}
 
 		if (isButtonPressed(eventRoutes, 0, 169, 629, 718))
 		{
 			windowOfRoutes.setVisible(false);
+			musicMap.pause();
 			createMenu();
 		}
 
@@ -256,7 +283,6 @@ void App::editMenu(Route& route, int clickX, int clickY)
 			{
 				editWindow.close();
 			}
-			seeClicks(editEvent);
 
 			if (isButtonPressed(editEvent, 123, 273, 77, 104))
 			{
@@ -317,11 +343,14 @@ void App::runApp()
 			{
 				window.close();
 			}
-			seeClicks(event);
-			loadWindows(event);
+			if (isButtonPressed(event, 67, 238, 505, 540))
+			{
+				createMenu();
+			}
 		}
 		if (isButtonPressed(event, 69, 234, 568, 603))
 		{
+			musicStart.stop();
 			window.close();
 		}
 
@@ -329,6 +358,7 @@ void App::runApp()
 		window.draw(sprite);
 		window.display();
 	}
+
 }
 
 Color App::randomColor()
@@ -339,6 +369,7 @@ Color App::randomColor()
 void App::drawCircles()
 {
 	Font font;
+	Text text;
 	if (!font.loadFromFile("Font/Adventure Subtitles.ttf"))
 	{
 		printf("Error al cargar fuente.");
@@ -346,7 +377,6 @@ void App::drawCircles()
 
 	PlaceNodo* current = ubications.getHead();
 	PlaceNodo* prev = nullptr;
-
 	while (current != nullptr)
 	{
 		CircleShape circle(8);
@@ -354,12 +384,7 @@ void App::drawCircles()
 		circle.setPosition(current->getX() - circle.getRadius(), current->getY() - circle.getRadius());
 		windowMap.draw(circle);
 
-		Text text;
-		text.setFont(font);
-		text.setString(current->getName());
-		text.setCharacterSize(15);
-		text.setFillColor(Color::White);
-		text.setPosition(current->getX() + 10, current->getY() - 5);
+		loadFontAndText(windowMap, font, text, current);
 		windowMap.draw(text);
 
 		if (prev != nullptr)
@@ -377,7 +402,7 @@ void App::drawCircles()
 	}
 }
 
-string App::namePlace()
+string App::writeName(string windowTitle, string message)
 {
 	string name = " ";
 	Font font;
@@ -390,7 +415,7 @@ string App::namePlace()
 	Text text("", font, 40);
 	text.setFillColor(Color::Black);
 
-	RenderWindow writeName(VideoMode(500, 45), "Nombre del lugar");
+	RenderWindow writeName(VideoMode(500, 45), windowTitle);
 	while (writeName.isOpen())
 	{
 		Event eventWrite;
@@ -429,18 +454,28 @@ string App::namePlace()
 		writeName.draw(text);
 		writeName.display();
 	}
-	cout << "Nombre del lugar ingresado: " << name << endl;
+	cout << message << name << endl;
 	return name;
 }
 
-void App::loadFontAndText(Font font, Text text, PlaceNodo* nodo)
+string App::nameOfRoute()
+{
+	return writeName("Nombre de la ruta", "Nombre de ruta ingresado: ");
+}
+
+string App::nameOfPlace()
+{
+	return writeName("Nombre del lugar", "Nombre de lugar ingresado: ");
+}
+
+void App::loadFontAndText(RenderWindow& window, Font font, Text text, PlaceNodo* nodo)
 {
 	text.setFont(font);
 	text.setString(nodo->getName());
 	text.setCharacterSize(15);
 	text.setFillColor(Color::White);
 	text.setPosition(nodo->getX() + 10, nodo->getY() - 5);
-	windowOfRoutes.draw(text);
+	window.draw(text);
 }
 
 void App::drawLines(RenderWindow& window, int x1, int y1, int x2, int y2, Color color)
@@ -488,7 +523,7 @@ void App::drawLineCurve(RenderWindow& window, Vector2f p0, Vector2f p1, Vector2f
 {
 	int prevX = 0, prevY = 0;
 	const int numPoints = 100;
-	for (int i = 0; i < numPoints; ++i)
+	for (int i = 0; i < numPoints; i++)
 	{
 		float t = static_cast<float>(i) / static_cast<float>(numPoints - 1);
 		float x = (1 - t) * (1 - t) * (1 - t) * p0.x + 3 * (1 - t) * (1 - t) * t * p1.x + 3 * (1 - t) * t * t * p2.x + t * t * t * p3.x;
@@ -522,17 +557,18 @@ void App::saveRoutesToFile()
 	while (routeNodo != nullptr)
 	{
 		Route& route = routeNodo->getRoute();
-		fileOfRoutes << "Ruta " << routeCount << ":\n";
+		fileOfRoutes << "Ruta:" << routeCount << "\n";
+		fileOfRoutes << "Nombre de la ruta:" << route.getName() << "\n";
 		PlaceNodo* current = route.getHead();
 
 		while (current != nullptr)
 		{
-			fileOfRoutes << "Ubicacion:" << current->getName() << ", X: " << current->getX() << ", Y: " << current->getY() << "\n";
+			fileOfRoutes << "Ubicacion:" << current->getName() << " X: " << current->getX() << " Y: " << current->getY() << "\n";
 			current = current->getNext();
 		}
 
-		fileOfRoutes << "Color de la ruta: " << static_cast<int>(route.getColor().r) << ", " << static_cast<int>(route.getColor().g) << ", "
-			<< static_cast<int>(route.getColor().b) << "\n";
+		fileOfRoutes << "Color de la ruta: " << to_string(route.getColor().r) << ", " << to_string(route.getColor().g) << ", "
+			<< to_string(route.getColor().b) << "\n";
 		fileOfRoutes << "--------------------------\n";
 
 		routeNodo = routeNodo->getNext();
@@ -564,9 +600,15 @@ void App::loadFromFile()
 			}
 			currentRoute = new Route();
 		}
+		else if (line.find("Nombre de la ruta") != string::npos)
+		{
+			size_t posNameRoute = line.find("Nombre de la ruta") + 18;
+			string routeName = line.substr(posNameRoute);
+			currentRoute->setName(routeName);
+		}
 		else if (line.find("Ubicacion:") != string::npos)
 		{
-			size_t posName = line.find("Ubicacion:") + 11;
+			size_t posName = line.find("Ubicacion:") + 10;
 			string name = line.substr(posName, line.find(" X:") - posName);
 			size_t posX = line.find("X:") + 2;
 			size_t posY = line.find("Y:") + 2;
